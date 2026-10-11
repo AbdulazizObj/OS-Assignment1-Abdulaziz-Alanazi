@@ -312,7 +312,7 @@ Multithreading is used in many programs I use every day. For example, in a web b
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+A process is a running program with its own memory, but a thread is a smaller unit that runs inside a process. The first difference is memory: threads share the same memory, but processes do not. The second difference is that creating a thread is faster and lighter than creating a process. In our code, the class `Process` is only a simulated process, and the real work is done by a Java thread created with `new Thread(process)` in `addProcessToQueue()`. We used threads because they are lighter and they all work inside one program and use the same ready queue.
 
 ## Question 2: Ready Queue Behavior
 
@@ -324,15 +324,27 @@ Multithreading is used in many programs I use every day. For example, in a web b
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+When a process does not finish in its time quantum, it goes back to the end of the ready queue. In my output, P1 has a burst time of 4352ms and the quantum is 2000ms, so it was re-queued 2 times before it finished. It ran for 2000ms, then 2000ms, then the last 352ms. Re-queueing is important for fairness because a long process cannot keep the CPU and make the other processes wait until it finishes.
+
+
 
 Example from my output:
+
 ```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+
+P1 executing quantum [2000ms] 
+ Quantum progress: [███████████████] 100%
+P1 completed quantum 2000ms │ Overall progress: [█████████░░░░░░░░░░░] 45%
+     Remaining time: 2352ms
+   P1 yields CPU for context switch
+ P1 (Priority: 7) enters the ready queue
+
+
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+
+In this snippet, P1 runs for one quantum of 2000ms but still has 2352ms remaining. So it yields the CPU and enters the ready queue again to wait for its next turn.
 
 ## Question 3: Thread Lifecycle
 
@@ -342,15 +354,15 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: [When is P1 in the New state?]
+1. **New**: P1 is in the New state after `new Thread(process)` runs in `addProcessToQueue()`. The thread exists and waits in the ready queue, but it has not started.
 
-2. **Runnable**: [When does P1 become Runnable?]
+2. **Runnable**: P1 becomes Runnable when the scheduler loop calls `currentThread.start()`.
 
-3. **Running**: [When is P1 Running?]
+3. **Running**: P1 is Running when the JVM gives it the CPU and it executes the `run()` method. This is when "P1 executing quantum" is printed.
 
-4. **Waiting**: [When and why would a thread be Waiting?]
+4. **Waiting**: Inside `run()`, P1's thread calls `Thread.sleep(stepTime)`, so it is in a timed waiting state. At the same time, the main thread is waiting because it called `currentThread.join()`.
 
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: P1's thread is Terminated when `run()` ends after the quantum. If P1 still has remaining time, `addProcessToQueue()` creates a new thread for its next turn.
 
 ## Question 4: Real-World Applications
 
@@ -360,33 +372,36 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): CPU time sharing in Windows
 
 **Description**:
-[Describe the real-world scenario.]
+
+On my computer, many programs are open at the same time, like VS Code, the browser and Spotify. The operating system has a scheduler that gives each program a short time on the CPU, then switches to the next one. This is like my simulation: the programs are the processes, the short time is the time quantum, and moving from one program to another is a context switch.
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
 
-### Example 2: [Name of application/scenario]
+Round-Robin works well here because it is fair: every program gets a turn and no program waits forever. It also keeps the computer responsive, because each program comes back to the CPU quickly, so the user feels that all programs are running together.
+
+### Example 2: A web server with many visitors
 
 **Description**:
-[Describe the real-world scenario or application.]
+
+A web server receives requests from many users at the same time. Each request can be handled by a thread, and the server gives each thread a short time to work. Here the requests are like the processes in my simulation, and the ready queue is the list of requests that are waiting.
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+
+Round-Robin fits because one heavy request cannot block all the other users. Every user gets some service in a short time, and the waiting time is easy to predict because each turn has a fixed quantum.
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. How Round-Robin uses a time quantum and re-queues a process that is not finished
+2. The difference between `start()`, `join()` and `sleep()`
+3. How waiting time and turnaround time are calculated
 
 **Concepts I need to study more:**
-1.
-2.
-
+1. Thread states, especially the difference between a thread that is sleeping and a thread that is waiting on `join()`
+2. What happens when many threads run at the same time and share data (synchronization)
 ---
 
 # ✅ Final Checklist (complete before submitting)
