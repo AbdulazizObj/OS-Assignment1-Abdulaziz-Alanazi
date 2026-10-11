@@ -30,12 +30,17 @@ class Process implements Runnable {
     private int timeQuantum; // Time slice (time quantum) allowed per CPU access (in milliseconds)
     private int remainingTime; // Time left for the process to finish its execution
 
-    // Constructor to initialize the process with name, burst time, and time quantum
-    public Process(String name, int burstTime, int timeQuantum) {
+    // [Feature 1] Priority of the process: 1 (lowest) to 10 (highest).
+    // Display/tracking only - it does NOT change the Round-Robin (FIFO) order.
+    private int priority;
+
+    // Constructor to initialize the process with name, burst time, time quantum, and priority
+    public Process(String name, int burstTime, int timeQuantum, int priority) {
         this.name = name;
         this.burstTime = burstTime;
         this.timeQuantum = timeQuantum;
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
+        this.priority = priority;                       // [Feature 1]
     }
 
     // This method will be called when the thread for this process is started
@@ -141,13 +146,18 @@ class Process implements Runnable {
     public boolean isFinished() {
         return remainingTime <= 0;
     }
+
+    // [Feature 1] Getter for the process priority (1-10, where 10 is highest)
+    public int getPriority() {
+        return priority;
+    }
 }
 
 public class SchedulerSimulation {
     public static void main(String[] args) {
         // ⚠️ IMPORTANT: Put your student ID here to seed the random number generator
         // This makes your output unique to you - DO NOT forget to change this!
-        int studentID = 446540236;  // ← CHANGE THIS TO YOUR ACTUAL STUDENT ID
+        int studentID = 446540236;  // My student ID
         
         Random random = new Random(studentID);
         
@@ -163,6 +173,10 @@ public class SchedulerSimulation {
         
         // Map to associate each thread with its respective process object
         Map<Thread, Process> processMap = new HashMap<>();
+        
+        // [Feature 1] Separate seeded generator for priorities, so adding priorities does not
+        // change the time quantum, process count, or burst times produced by 'random'
+        Random priorityRandom = new Random(studentID);
         
         // Print simulation header with elegant formatting
         System.out.println("\n" + Colors.BOLD + Colors.BRIGHT_CYAN + 
@@ -196,8 +210,11 @@ public class SchedulerSimulation {
             // Random burst time for each process between timeQuantum/2 and 3*timeQuantum
             int burstTime = timeQuantum/2 + random.nextInt(2 * timeQuantum + 1);
             
-            // Create a new process object with a unique name, burst time, and the defined time quantum
-            Process process = new Process("P" + i, burstTime, timeQuantum);
+            // [Feature 1] Random priority between 1 and 10 (10 is the highest)
+            int priority = 1 + priorityRandom.nextInt(10);
+            
+            // Create a new process object with a unique name, burst time, time quantum, and priority
+            Process process = new Process("P" + i, burstTime, timeQuantum, priority);
             
             // Add the process to the ready queue and the map
             addProcessToQueue(process, processQueue, processMap);
@@ -291,9 +308,12 @@ public class SchedulerSimulation {
         processMap.put(thread, process);
         
         // Print a message indicating the process has entered the ready queue
+        // [Feature 1] The priority is shown next to the process name
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + 
-                          Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
+                          Colors.RESET + Colors.YELLOW + " (Priority: " + process.getPriority() + ")" + 
+                          Colors.RESET + Colors.BLUE + " enters the ready queue" + Colors.RESET + 
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
-                          Colors.RESET);
+                          Colors.RESET + " │ Remaining: " + Colors.YELLOW + process.getRemainingTime() + 
+                          "ms" + Colors.RESET);
     }
 }
