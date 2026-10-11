@@ -129,55 +129,74 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October 11, 2026, 9:00 PM]
+**What I did**: Created my GitHub account, forked the starter repository and set up VS Code
 
 **Details**:
+- Created a GitHub account with my university email
+- Forked makopt/OS-Assignment1-Starter-481 and named it OS-Assignment1-Abdulaziz-Alanazi
+- Checked that the repository is public
+- Installed VS Code and tried to clone the repository
 
-**Challenges**:
+**Challenges**: The "Git: Clone" command did not appear in the VS Code Command Palette. I also opened Git GUI by mistake, which I did not need.
 
-**Solution**:
+**Solution**: Git was installed but VS Code had not detected it yet. After I closed VS Code and opened it again, "Clone Git Repository" appeared on the start page.
 
-**Time spent**:
+**Time spent**: 30 minutes
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**:
+### Entry 2 - [October 12, 2026, 12:15 AM]
+**What I did**: Configured Git, cloned my repository and set my student ID
 
 **Details**:
+- Set my name and university email with `git config --global`
+- Cloned my fork with "Clone from GitHub" and installed the Extension Pack for Java
+- Changed the student ID on line 150 to 446540236
+- Committed and pushed: `Set my student ID: 446540236`
+- Checked on GitHub that the commit appeared
 
-**Challenges**:
+**Challenges**: The first time, I pasted the `git config` commands with the example text instead of my real name and email. I also confused the email setting with the student ID inside the code.
 
-**Solution**:
+**Solution**: I ran the two commands again with my own name and email, then changed the ID in the code itself and staged it in the Source Control panel.
 
-**Time spent**:
+**Time spent**: 15 minutes
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 3 - [October 12, 2026, 12:30 AM]
+**What I did**: Added Feature 1 (process priority) and Feature 2 (context switch counter)
 
 **Details**:
+- Added a `priority` field (1-10) to the `Process` class with a `getPriority()` getter
+- Each process gets a random priority and it is printed when the process enters the ready queue
+- Committed and pushed: `Feature 1: Added priority field to Process class`
+- Added a `static int contextSwitchCount` that is incremented before `currentThread.start()`
+- Committed and pushed: `Feature 2: Implemented context switch counter`
 
-**Challenges**:
+**Challenges**: When I pressed Ctrl+A the whole file turned white and I was not sure if something was wrong.
 
-**Solution**:
+**Solution**: It was only the selection highlight. I checked the line count after each change (319 lines, then 330) to be sure the file was updated correctly.
 
-**Time spent**:
+**Time spent**: 10 minutes
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 4 - [October 12, 2026, 12:40 AM]
+**What I did**: Added Feature 3 (waiting time tracking) and ran the program
 
 **Details**:
+- Added `creationTime`, `readySince` and `totalWaitingTime` fields using `System.currentTimeMillis()`
+- Added `markReady()` and `markDispatched()` and a summary table at the end
+- Committed and pushed: `Feature 3: Added waiting time tracking and summary table`
+- Ran the program in VS Code: 11 processes, time quantum 2000ms, 25 context switches
+- Average waiting time was 27183.18 ms and average turnaround time was 30497.36 ms
 
-**Challenges**:
+**Challenges**: I could not copy the program output from the terminal. Ctrl+A did not select it, and right-click pasted text instead of copying.
 
-**Solution**:
+**Solution**: I used "Terminal: Select All" from the Command Palette, then Ctrl+C, and pasted the output into Notepad.
 
-**Time spent**:
+**Time spent**: 10 minutes
 
 ---
 
