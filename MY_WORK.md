@@ -256,7 +256,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+Before this assignment I knew just a little about threads. I learned that a thread is created with new Thread(process)  and it starts working when we call start() . I learned that  join() makes the main program wait until the process finish. thread.sleep() is used in the code to act like the process is working for some time . When I ran the program, I noticed that P1 did not finish in one turn. It went back to the ready queue two times, but P8 finished from the first turn because its burst time was less than the quantum. The thing that surprised me was that the waiting time was much longer than the burst time. P1 needed only 4352ms of work, but it waited about 30 seconds.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -264,7 +264,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+The hardest part for me was that the assignment has many parts. It is not only code. I had to use GitHub, make commits, write this file and record a video. And Some of the programs were new for me as a student
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -272,7 +272,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+I solved the problems step by step. When Git: Clone did not appear, I closed VS Code and opened it again. I also used  the README file And an AI assistant to help me understand the steps. After every commit, I opened my repository on GitHub to make sure it was uploaded. When I could not copy the terminal output, I used Terminal: Select All from the Command Palette. I learned that it is better to do one small step and check it before the next one.
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -280,7 +280,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+Multithreading is used in many programs I use every day. For example, in a web browser, one thread lets me open other pages while another thread downloads a file . Another example is a game, where the sound, the graphics and the network work at the same time. This is similar to my simulation because many processes share the CPU and each one gets a small time, so no one waits forever. Without threads, the program would freeze until one task finishes.
 
 ### Optional: What would you like to learn more about?
 
