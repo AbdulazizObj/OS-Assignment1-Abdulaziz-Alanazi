@@ -235,13 +235,13 @@ https://drive.google.com/file/d/12Oo6j9amxYVGN74ZbelOWPnTQdJYHHrl/view?usp=shari
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: About 4 hours
 
-**Most challenging part**:
+**Most challenging part**: Using Git, GitHub and VS Code for the first time, and the large number of parts in the assignment.
 
-**Most interesting learning**:
+**Most interesting learning**: Seeing that a process can wait much longer than its own burst time, like P1 that needed 4352ms but waited about 30 seconds.
 
-**What I would do differently next time**:
+**What I would do differently next time**: Start earlier, work over several days, and commit after each work session.
 
 ---
 
