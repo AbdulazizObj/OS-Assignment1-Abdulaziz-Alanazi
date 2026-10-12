@@ -39,7 +39,8 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link**:
+https://drive.google.com/file/d/12Oo6j9amxYVGN74ZbelOWPnTQdJYHHrl/view?usp=sharing
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -200,16 +201,20 @@
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 5 - [October 12, 2026, 6:15 PM]
+**What I did**: Recorded and uploaded the video demonstration
 
 **Details**:
+- Set up OBS to record my screen and microphone
+- Recorded the video: repository, the three features, running the program, and explaining `join()`
+- Uploaded the video to Google Drive with "Anyone with the link" access
+- Added the video link to this file
 
-**Challenges**:
+**Challenges**: OBS showed a "Bad File Path" error, and the screen capture did not fit because my monitor is 2560x1440. My first recording was 4 minutes long and my voice was too quiet.
 
-**Solution**:
+**Solution**: I chose a new recording folder, used "Fit to screen", and changed the resolution. I trimmed the pauses and raised the volume with help from an AI assistant, so the final video is under 3 minutes. I checked the link in a private window.
 
-**Time spent**:
+**Time spent**: 2 hours
 
 ---
 
